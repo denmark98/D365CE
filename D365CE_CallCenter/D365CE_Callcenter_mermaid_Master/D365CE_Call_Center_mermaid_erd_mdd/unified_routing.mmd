@@ -1,0 +1,51 @@
+erDiagram
+    %% =========================
+    %% UNIFIED ROUTING (ENGINE)
+    %% =========================
+    UnifiedRouting ||--o{ RoutingRequest : "1:N"
+    UnifiedRouting {
+        string engineId
+        "Unified Routing engine (evaluates rules, skills, capacity, distribution)"
+    }
+
+    %% =========================
+    %% ROUTING REQUEST CORE
+    %% =========================
+    RoutingRequest ||--o{ ContextVariable : "1:N"
+    RoutingRequest ||--o{ WorkClassification : "1:N"
+    RoutingRequest ||--o{ RoutingConfigurationStep : "1:N"
+
+    RoutingRequest {
+        string msdyn_routingrequestId
+        "Record created when Unified Routing executes"
+    }
+
+    %% =========================
+    %% CONTEXT VARIABLES
+    %% =========================
+    ContextVariable {
+        string msdyn_occontextvariableId
+        "Metadata (e.g. language=en, vip=true)"
+    }
+
+    %% =========================
+    %% WORK CLASSIFICATION
+    %% =========================
+    WorkClassification ||--o{ Skill : "1:N"
+    WorkClassification {
+        string msdyn_workclassificationId
+        "Rules that classify the request"
+    }
+
+    Skill {
+        string msdyn_skillId
+        "Skill requirement (e.g. English, Danish)"
+    }
+
+    %% =========================
+    %% ROUTING CONFIGURATION STEP
+    %% =========================
+    RoutingConfigurationStep {
+        string msdyn_routingconfigurationstepId
+        "Evaluation steps executed during routing"
+    }

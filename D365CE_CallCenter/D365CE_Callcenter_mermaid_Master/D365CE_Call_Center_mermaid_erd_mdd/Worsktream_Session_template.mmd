@@ -1,0 +1,40 @@
+erDiagram
+    %% =========================
+    %% SESSION TEMPLATE CLUSTER
+    %% =========================
+    WorkStream ||--o{ SessionTemplate : "1:N"
+
+    SessionTemplate ||--o{ Macro : "1:N"
+    SessionTemplate ||--o{ KnowledgeArticle : "1:N"
+    SessionTemplate ||--o{ AgentScript : "1:N"
+    SessionTemplate ||--o{ KnowledgeSearchConfig : "1:N"
+
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Container for channel, session templates, distribution"
+    }
+
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "UI config for agent desktop"
+    }
+
+    Macro {
+        string msdyn_macroId
+        "Automation triggered in session"
+    }
+
+    KnowledgeArticle {
+        string knowledgearticleId
+        "Knowledge article surfaced to agent"
+    }
+
+    AgentScript {
+        string msdyn_agentscriptId
+        "Step-by-step scripted guidance for agents"
+    }
+
+    KnowledgeSearchConfig {
+        string msdyn_knowledgesearchconfigurationId
+        "Defines KB search providers and relevance rules"
+    }

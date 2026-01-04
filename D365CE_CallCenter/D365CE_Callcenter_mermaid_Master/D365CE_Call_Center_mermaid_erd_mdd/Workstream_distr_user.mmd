@@ -1,0 +1,41 @@
+erDiagram
+    %% WORKSTREAM
+    WorkStream ||--o{ WorkDistributionSetting : "1:N"
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Defines routing rules, queues, templates"
+    }
+
+    %% WORK DISTRIBUTION
+    WorkDistributionSetting ||--o{ UserSettings : "1:N"
+    WorkDistributionSetting {
+        string msdyn_workdistributionsettingId
+        "Distribution mode: Push, Pick (Pull), Round Robin, Load Balancing"
+    }
+
+    %% USER
+    User ||--o{ UserSettings : "1:N"
+    User {
+        string systemuserid
+        "Agent who handles work"
+    }
+
+    %% USER SETTINGS
+    UserSettings ||--|| AgentCapacityProfile : "N:1"
+
+    UserSettings {
+        string msdyn_usersettingsId
+        "Agent routing preferences, linked to distribution setting"
+    }
+
+    %% CAPACITY
+    AgentCapacityProfile ||--o{ ChannelCapacityProfile : "1:N"
+    AgentCapacityProfile {
+        string msdyn_agentcapacityprofileId
+        "Workload capacity profile for user"
+    }
+
+    ChannelCapacityProfile {
+        string msdyn_channelcapacityprofileId
+        "Per-channel concurrency limits"
+    }

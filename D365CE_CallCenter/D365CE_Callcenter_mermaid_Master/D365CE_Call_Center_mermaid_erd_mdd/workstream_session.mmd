@@ -1,0 +1,61 @@
+erDiagram
+    %% =========================
+    %% WORKSTREAM & QUEUE
+    %% =========================
+    WorkStream ||--o{ Queue : "1:N"
+    WorkStream ||--o{ SessionTemplate : "1:N"
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Defines routing rules, skills, templates"
+    }
+
+    Queue ||--o{ QueueItem : "1:N"
+    Queue {
+        string queueId
+        "Queue of calls waiting for assignment"
+    }
+    QueueItem {
+        string queueitemId
+        "Queue slot entry"
+    }
+
+    %% =========================
+    %% SESSION
+    %% =========================
+    Session ||--|| SessionTemplate : "1:1"
+    Session ||--o{ PhoneCall : "1:N"
+    Session {
+        string msdyn_sessionId
+        "Session created when a conversation is picked"
+    }
+
+    PhoneCall {
+        string activityid
+        "CRM phonecall activity logged on timeline"
+    }
+
+    %% =========================
+    %% SESSION TEMPLATE COMPONENTS
+    %% =========================
+    SessionTemplate ||--o{ Macro : "1:N"
+    SessionTemplate ||--o{ KnowledgeArticle : "1:N"
+    SessionTemplate ||--o{ AppModule : "1:N"
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "UI config for agent desktop"
+    }
+
+    Macro {
+        string msdyn_macroId
+        "Automations triggered on session start"
+    }
+
+    KnowledgeArticle {
+        string knowledgearticleId
+        "Knowledge base surfaced during session"
+    }
+
+    AppModule {
+        string appmoduleId
+        "Model-driven app form context"
+    }

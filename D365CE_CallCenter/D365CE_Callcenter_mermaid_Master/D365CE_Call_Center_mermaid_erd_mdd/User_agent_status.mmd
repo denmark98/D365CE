@@ -1,0 +1,27 @@
+erDiagram
+    %% USER
+    User ||--o{ AgentStatus : "1:N"
+    User ||--o{ QueueMembership : "1:N"
+
+    User {
+        string systemuserid
+        "Agent who handles work"
+    }
+
+    %% AGENT STATUS & PRESENCE
+    AgentStatus }o--|| Presence : "N:1"
+    AgentStatus {
+        string msdyn_agentstatusId
+        "Real-time presence state for user"
+    }
+
+    Presence {
+        string msdyn_presenceId
+        "Presence definition (Available, Busy, DND)"
+    }
+
+    %% QUEUE MEMBERSHIP
+    QueueMembership {
+        string queuemembershipid
+        "Links user to queues they belong to"
+    }

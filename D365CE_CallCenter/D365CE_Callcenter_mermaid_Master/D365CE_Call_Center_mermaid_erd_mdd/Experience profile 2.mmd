@@ -1,0 +1,12 @@
+flowchart TD
+
+    EP[Experience Profile<br><sub>msdyn_appprofile</sub>] --> WS[Workspace<br><sub>Agent desktop container</sub>]
+
+    WS --> ST[Session Template<br><sub>msdyn_sessiontemplate</sub>]
+
+    ST --> AT[Application Tab Template<br><sub>msdyn_applicationtabtemplate</sub>]
+    ST --> NF[Notifications<br><sub>msdyn_notificationtemplate</sub>]
+    ST --> CF[Conversation Form Settings<br><sub>msdyn_conversationform</sub>]
+    ST --> VC[Voice Call Experience<br><sub>msdyn_voicecallexperience</sub>]
+
+    EP --> PS[Productivity Settings<br><sub>msdyn_productivityparameter</sub>]

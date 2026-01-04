@@ -1,0 +1,163 @@
+erDiagram
+    %% =========================
+    %% VOICE
+    %% =========================
+    Voice ||--|| LiveWorkItem : "1:1"
+    Voice {
+        string msdyn_ocvoiceId
+        "Incoming voice event"
+    }
+
+    %% =========================
+    %% LIVE WORK ITEM
+    %% =========================
+    LiveWorkItem ||--o{ RoutingRequest : "1:N"
+    LiveWorkItem ||--o{ WorkStream : "1:N"
+    LiveWorkItem {
+        string msdyn_ocliveworkitemId
+        "Active call session"
+    }
+
+    %% =========================
+    %% ROUTING REQUEST + CONTEXT
+    %% =========================
+    RoutingRequest ||--o{ ContextVariable : "1:N"
+    RoutingRequest ||--o{ WorkClassification : "1:N"
+    RoutingRequest ||--o{ QueueItem : "1:N"
+    RoutingRequest {
+        string msdyn_routingrequestId
+        "Routing decision record"
+    }
+
+    ContextVariable {
+        string msdyn_occontextvariableId
+        "Key/value pair (e.g. language=en, vip=true)"
+    }
+
+    WorkClassification ||--o{ Skill : "1:N"
+    WorkClassification {
+        string msdyn_workclassificationId
+        "Classification rules applied to request"
+    }
+
+    Skill {
+        string msdyn_skillId
+        "Skill requirement (e.g. English, Danish)"
+    }
+
+    %% =========================
+    %% WORKSTREAM + QUEUE
+    %% =========================
+    WorkStream ||--o{ Queue : "1:N"
+    WorkStream ||--o{ SessionTemplate : "1:N"
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Routing rules & templates"
+    }
+
+    Queue ||--o{ QueueItem : "1:N"
+    Queue {
+        string queueId
+        "Queue of work items"
+    }
+    QueueItem {
+        string queueitemId
+        "Queue assignment outcome"
+    }
+
+    %% =========================
+    %% USER / AGENT
+    %% =========================
+    QueueItem }o--|| User : "N:1"
+    User ||--o{ Session : "1:N"
+    User ||--o{ UserSettings : "1:N"
+    User ||--o{ AgentStatus : "1:N"
+    User {
+        string systemuserid
+        "Agent handling work"
+    }
+
+    %% =========================
+    %% USER SETTINGS & CAPABILITIES
+    %% =========================
+    UserSettings ||--|| AgentCapacityProfile : "N:1"
+    UserSettings ||--o{ Presence : "1:N"
+    UserSettings ||--o{ Language : "1:N"
+    UserSettings {
+        string msdyn_usersettingsId
+        "Agent capacity, routing preferences"
+    }
+
+    AgentStatus }o--|| Presence : "N:1"
+    AgentStatus {
+        string msdyn_agentstatusId
+        "Real-time or historical presence"
+    }
+
+    Presence {
+        string msdyn_presenceId
+        "Presence definition (Available, Busy, Away, DND)"
+    }
+
+    AgentCapacityProfile ||--o{ ChannelCapacityProfile : "1:N"
+    AgentCapacityProfile {
+        string msdyn_agentcapacityprofileId
+        "Capacity model applied to user"
+    }
+
+    ChannelCapacityProfile {
+        string msdyn_channelcapacityprofileId
+        "Per-channel capacity (Voice=1, Chat=2)"
+    }
+
+    Language {
+        string msdyn_oclanguageId
+        "Languages supported by agent"
+    }
+
+    %% =========================
+    %% SESSION + PHONECALL
+    %% =========================
+    Session ||--o{ PhoneCall : "1:N"
+    Session ||--|| SessionTemplate : "1:1"
+    Session {
+        string msdyn_sessionId
+        "Agent session when answering"
+    }
+
+    PhoneCall }o--|| Contact : "N:1"
+    PhoneCall {
+        string activityid
+        "CRM phonecall activity"
+    }
+
+    Contact {
+        string contactId
+        "Customer/contact record"
+    }
+
+    %% =========================
+    %% SESSION TEMPLATE COMPONENTS
+    %% =========================
+    SessionTemplate ||--o{ Macro : "1:N"
+    SessionTemplate ||--o{ KnowledgeArticle : "1:N"
+    SessionTemplate ||--o{ AppModule : "1:N"
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "UI config for agent desktop"
+    }
+
+    Macro {
+        string msdyn_macroId
+        "Automation on session start"
+    }
+
+    KnowledgeArticle {
+        string knowledgearticleId
+        "Knowledge base surfaced during session"
+    }
+
+    AppModule {
+        string appmoduleId
+        "Model-driven app context"
+    }

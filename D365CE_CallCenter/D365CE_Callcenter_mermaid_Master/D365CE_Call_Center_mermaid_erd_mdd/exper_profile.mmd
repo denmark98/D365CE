@@ -1,0 +1,51 @@
+erDiagram
+
+    ExperienceProfile ||--o{ Workspace : "1:N"
+    Workspace ||--o{ SessionTemplate : "1:N"
+    
+    SessionTemplate ||--o{ ApplicationTabTemplate : "1:N"
+    SessionTemplate ||--o{ NotificationTemplate : "1:N"
+    SessionTemplate ||--o{ ConversationForm : "1:N"
+    SessionTemplate ||--o{ VoiceCallExperience : "1:N"
+
+    ExperienceProfile ||--o{ ProductivitySetting : "1:N"
+
+    ExperienceProfile {
+        string msdyn_appprofileId
+        "Defines which workspaces and sessions an agent sees"
+    }
+
+    Workspace {
+        string msdyn_appmoduleId
+        "Agent desktop container for sessions"
+    }
+
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "UI config for sessions (tabs, layout)"
+    }
+
+    ApplicationTabTemplate {
+        string msdyn_applicationtabtemplateId
+        "Tabs that open automatically in a session"
+    }
+
+    NotificationTemplate {
+        string msdyn_notificationtemplateId
+        "Config for in-app notifications"
+    }
+
+    ConversationForm {
+        string msdyn_conversationformId
+        "Form used for conversation records"
+    }
+
+    VoiceCallExperience {
+        string msdyn_voicecallexperienceId
+        "Defines post-call survey/feedback config"
+    }
+
+    ProductivitySetting {
+        string msdyn_productivityparameterId
+        "Defines Copilot/KB/Pane features for agents"
+    }

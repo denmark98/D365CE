@@ -1,0 +1,25 @@
+erDiagram
+
+    WorkStream ||--o{ SessionTemplate : "1:N"
+    SessionTemplate ||--o{ VoiceCallExperience : "1:N"
+    VoiceCallExperience ||--o{ VoiceCall : "1:N"
+
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Routing container for voice channel (queue, distribution rules, channel settings)"
+    }
+
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "Defines agent desktop layout for sessions"
+    }
+
+    VoiceCallExperience {
+        string msdyn_voicecallexperienceId
+        "Configures how a voice call session behaves (wrap-up, forms, surveys)"
+    }
+
+    VoiceCall {
+        string msdyn_ocvoicecallId
+        "Represents an individual phone call handled via Omnichannel"
+    }

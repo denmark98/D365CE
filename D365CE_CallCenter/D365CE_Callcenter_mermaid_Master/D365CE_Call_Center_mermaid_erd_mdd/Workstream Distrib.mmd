@@ -1,0 +1,91 @@
+erDiagram
+    %% =========================
+    %% WORKSTREAM CORE
+    %% =========================
+    WorkStream ||--o{ Queue : "1:N"
+    WorkStream ||--o{ SessionTemplate : "1:N"
+    WorkStream ||--o{ RoutingRuleSet : "1:N"
+    WorkStream ||--o{ WorkDistributionSetting : "1:N"
+    WorkStream ||--o{ WorkClassification : "1:N"
+
+    WorkStream {
+        string msdyn_liveworkstreamId
+        "Defines routing rules, templates, and distribution for a channel"
+    }
+
+    %% =========================
+    %% QUEUE
+    %% =========================
+    Queue ||--o{ QueueItem : "1:N"
+    Queue {
+        string queueId
+        "Queue where items are routed"
+    }
+
+    QueueItem {
+        string queueitemId
+        "Link between work item and queue"
+    }
+
+    %% =========================
+    %% SESSION TEMPLATE
+    %% =========================
+    SessionTemplate ||--o{ Macro : "1:N"
+    SessionTemplate ||--o{ KnowledgeArticle : "1:N"
+    SessionTemplate ||--o{ AppModule : "1:N"
+
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "UI config for agent desktop"
+    }
+
+    Macro {
+        string msdyn_macroId
+        "Automations triggered in agent session"
+    }
+
+    KnowledgeArticle {
+        string knowledgearticleId
+        "Knowledge base surfaced to agents"
+    }
+
+    AppModule {
+        string appmoduleId
+        "Model-driven app context"
+    }
+
+    %% =========================
+    %% ROUTING RULE SET
+    %% =========================
+    RoutingRuleSet ||--o{ RoutingConfigurationStep : "1:N"
+    RoutingRuleSet {
+        string msdyn_routingrulesetId
+        "Collection of routing rules for this WorkStream"
+    }
+
+    RoutingConfigurationStep {
+        string msdyn_routingconfigurationstepId
+        "Evaluation step in a routing pipeline"
+    }
+
+    %% =========================
+    %% WORK DISTRIBUTION
+    %% =========================
+    WorkDistributionSetting {
+        string msdyn_workdistributionsettingId
+        "Defines how work is distributed (round robin, load balancing, push/pull)"
+    }
+
+    %% =========================
+    %% WORK CLASSIFICATION
+    %% =========================
+    WorkClassification ||--o{ Skill : "1:N"
+    WorkClassification {
+        string msdyn_workclassificationId
+        "Rules to classify work items (priority, language, skill)"
+    }
+
+    Skill {
+        string msdyn_skillId
+        "Skill requirement assigned by classification"
+    }

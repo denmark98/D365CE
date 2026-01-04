@@ -1,0 +1,31 @@
+erDiagram
+
+    VoiceCallExperience ||--o{ VoiceCall : "1:N"
+    VoiceCall ||--o{ Transcription : "1:N"
+    VoiceCall ||--o{ Recording : "1:N"
+    VoiceCall ||--o{ Sentiment : "1:N"
+
+    VoiceCallExperience {
+        string msdyn_voicecallexperienceId
+        "Configures how a voice call session behaves (wrap-up, forms, surveys)"
+    }
+
+    VoiceCall {
+        string msdyn_ocvoicecallId
+        "Represents a single phone call handled via Omnichannel"
+    }
+
+    Transcription {
+        string msdyn_transcriptionId
+        "Real-time speech-to-text captured during the call"
+    }
+
+    Recording {
+        string msdyn_recordingId
+        "Audio recording metadata (storage depends on compliance settings)"
+    }
+
+    Sentiment {
+        string msdyn_sentimentId
+        "AI analysis of call tone (positive/neutral/negative)"
+    }

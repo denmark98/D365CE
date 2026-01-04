@@ -1,0 +1,9 @@
+flowchart TB
+    A[Incoming call voice event] --> B[LiveWorkItem created]
+    B --> C[RoutingRequest evaluated]
+    C --> D[Place in queue]
+    D --> E[QueueItem created]
+    E --> F[QueueId Voice Queue Denmark]
+    E --> G[RegardingObjectId LiveWorkItem]
+    E --> H[Priority High]
+    E --> I[Status Waiting]

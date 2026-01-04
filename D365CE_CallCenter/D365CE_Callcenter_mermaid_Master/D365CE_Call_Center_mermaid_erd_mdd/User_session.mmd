@@ -1,0 +1,20 @@
+erDiagram
+    %% USER
+    User ||--o{ Session : "1:N"
+    User {
+        string systemuserid
+        "Agent handling work"
+    }
+
+    %% SESSION
+    Session ||--|| SessionTemplate : "1:1"
+    Session {
+        string msdyn_sessionId
+        "Session created when user accepts work"
+    }
+
+    %% SESSION TEMPLATE
+    SessionTemplate {
+        string msdyn_sessiontemplateId
+        "Configuration for the agent’s desktop session"
+    }

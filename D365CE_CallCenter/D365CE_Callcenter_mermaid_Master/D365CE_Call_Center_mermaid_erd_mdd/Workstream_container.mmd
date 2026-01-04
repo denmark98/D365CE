@@ -1,0 +1,10 @@
+flowchart TB
+    subgraph WS[WorkStream - Container: rules, queues, templates]
+        V[Voice - STEP 1 Incoming voice event]
+        LWI[LiveWorkItem - STEP 2 Active call session]
+        UR[Unified Routing Engine - evaluates rules]
+        V --> LWI --> UR
+    end
+
+    RR[RoutingRequest - STEP 3 Routing decision record]
+    UR --> RR

@@ -1,0 +1,20 @@
+erDiagram
+    %% =========================
+    %% RUNTIME FLOW ONLY
+    %% =========================
+    Voice ||--|| LiveWorkItem : "1:1"
+    Voice {
+        string msdyn_ocvoiceId
+        "STEP 1 - Incoming voice event"
+    }
+
+    LiveWorkItem ||--o{ RoutingRequest : "1:N"
+    LiveWorkItem {
+        string msdyn_ocliveworkitemId
+        "STEP 2 - Active call session"
+    }
+
+    RoutingRequest {
+        string msdyn_routingrequestId
+        "STEP 3 - Routing decision record"
+    }
